@@ -4,6 +4,20 @@
 // };
 
 // But in stead we're going to implement it from scratch:
-var getElementsByClassName = function (className) {
-  // your code here
+var getElementsByClassName = function (nameOfClass) {
+  var elemArr = [];
+  
+  function travAndCheck(element){
+    var children = element.children;
+    _.each(children, function(child){
+      if(child.classList.contains(nameOfClass)){
+        elemArr.push(child);
+      }
+      if(child.hasChildNodes){
+        travAndCheck(child);
+      }
+    })
+  }
+  travAndCheck(document);
+  return elemArr;
 };
